@@ -1,26 +1,120 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette */
+  --color-cream: #FDF7F2;
+  --color-caramel: #8B4513;
+  --color-honey: #DAA520;
+  --color-gold: #D4AF37;
+  
+  /* Text Colors */
+  --text-primary: #2C1810;
+  --text-secondary: #5C4D47;
+  --text-light: #8A7A75;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-[var(--color-cream)] text-[var(--text-primary)] font-sans;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .content-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-[var(--text-secondary)] text-lg md:text-xl max-w-2xl mx-auto;
+  }
+
+  .sweet-button {
+    @apply inline-flex items-center px-6 py-3 rounded-full
+           bg-[var(--color-caramel)] text-white
+           hover:bg-opacity-90 transition-all duration-300
+           text-base font-medium;
+  }
+
+  .sweet-card {
+    @apply relative overflow-hidden rounded-2xl
+           bg-white/50 backdrop-blur-sm
+           border border-[var(--color-caramel)] border-opacity-10
+           hover:border-opacity-20
+           transition-all duration-300
+           shadow-sm hover:shadow-md;
+  }
+
+  .golden-text {
+    @apply bg-gradient-to-r from-[var(--color-caramel)] via-[var(--color-honey)] to-[var(--color-gold)]
+           bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .decorative-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B4513' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .animate-gentle-float {
+    animation: gentle-float 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  @keyframes gentle-float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .writing-mode-vertical {
+    writing-mode: vertical-rl;
+  }
+
+  /* Additional Portfolio-specific Utilities */
+  .text-shadow-elegant {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-gradient-elegant {
+    background: linear-gradient(135deg, var(--color-cream) 0%, #fff 100%);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+  }
 }

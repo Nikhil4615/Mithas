@@ -1,27 +1,28 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import './globals.css';
+import { Playfair_Display, Cormorant_Garamond } from 'next/font/google';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: 'variable',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
 });
 
 export const metadata = {
-  title: 'Mithas - Premium Indian Sweets',
-  description: 'Discover authentic Indian sweets and savories at Mithas. Handcrafted with traditional recipes and premium ingredients since 1993.',
+  title: 'Mithas - Traditional Indian Sweets & Confectionery',
+  description: 'Experience the artistry of traditional Indian sweet-making at Mithas. Three decades of crafting moments of joy through authentic flavors and timeless recipes.',
+  keywords: ['Indian sweets', 'traditional confectionery', 'mithai', 'artisanal sweets', 'heritage recipes'],
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${playfair.className} ${cormorant.className} antialiased`}>
         {children}
       </body>
     </html>
